@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Retro Arcade</title>
+<meta name="description" content="Biblioteca de juegos retro en el navegador: NES, SNES, Game Boy, GBA, N64, PS1, DS y Sega.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo">▶</span>
+    <div>
+      <h1>RETRO ARCADE</h1>
+      <p class="sub">Tus juegos clásicos, en el navegador</p>
+    </div>
+  </div>
+  <label class="btn primary" for="fileInput">＋ Agregar juego</label>
+  <input id="fileInput" type="file" multiple hidden>
+</header>
+
+<main>
+  <section class="consoles" aria-label="Consolas">
+    <button class="chip active" data-filter="all">Todas <span class="n" id="n-all">0</span></button>
+    <!-- se llena con JS -->
+  </section>
+
+  <section id="drop" class="drop">
+    <div class="drop-inner">
+      <div class="drop-icon">🕹️</div>
+      <p><b>Arrastra aquí tus juegos</b> o toca <b>＋ Agregar juego</b></p>
+      <p class="hint">Formatos: .nes .sfc .smc .gb .gbc .gba .n64 .z64 .nds .md .gen .sms .gg .a26 .chd .pbp .bin .iso .zip</p>
+    </div>
+  </section>
+
+  <section class="search-row">
+    <input id="search" type="search" placeholder="Buscar en tu biblioteca…" autocomplete="off">
+  </section>
+
+  <section id="library" class="library" aria-live="polite"></section>
+  <p id="empty" class="empty">Tu biblioteca está vacía. Agrega un juego para empezar.</p>
+</main>
+
+<footer class="foot">
+  <p>Los juegos se guardan solo en este dispositivo. Usa copias de juegos que tengas o juegos libres (homebrew).</p>
+  <p>Emulación con <a href="https://emulatorjs.org" target="_blank" rel="noopener">EmulatorJS</a> (libretro). PS2 con <a href="https://github.com/jpd002/Play-" target="_blank" rel="noopener">Play!</a> (experimental).</p>
+</footer>
+
+<!-- Elegir consola cuando el archivo es .zip / .bin / .iso -->
+<dialog id="pick">
+  <form method="dialog">
+    <h3>¿De qué consola es?</h3>
+    <p id="pickName" class="mut"></p>
+    <div id="pickList" class="pick-list"></div>
+    <button class="btn ghost" value="cancel">Cancelar</button>
+  </form>
+</dialog>
+
+<!-- Reproductor -->
+<div id="player" class="player" hidden>
+  <div class="player-bar">
+    <button id="exitBtn" class="btn ghost">✕ Salir</button>
+    <span id="nowPlaying"></span>
+  </div>
+  <div id="gameWrap"><div id="game"></div></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
